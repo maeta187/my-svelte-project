@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Nested from "./components/Nested.svelte";
+	import Teacher from "./components/Teacher.svelte";
 	export let name: string;
 	export let count: number;
 	const handleClick = () => count++;
@@ -13,6 +14,14 @@
 	export let numbers: number[];
 	const addNumber = () => (numbers[numbers.length] = numbers.length + 1);
 	$: sum = numbers.reduce((t, n) => t + n, 0);
+	// 型定義ファイルを作ってインポートできるか要検討
+	type teacherType = {
+		name: String;
+		age: number;
+		subject: String;
+		homeroomTeacherFlag: Boolean;
+	};
+	export let teacher: teacherType;
 </script>
 
 <main class="wrapper">
@@ -24,7 +33,7 @@
 	<div>
 		<h2>1.Introduction</h2>
 		<img src={img} alt="DummyImg..." />
-		<Nested />
+		<Nested propsText={"PropsText"} propsNo={1} />
 		<p>{@html htmlStrongText}</p>
 		<button on:click={handleClick}>
 			{count}
@@ -35,6 +44,13 @@
 		<h2>2.Reactivity</h2>
 		<p>{numbers.join(" + ")} = {sum}</p>
 		<button on:click={addNumber}> Add a number </button>
+	</div>
+	<div>
+		<Teacher
+			teacherName={teacher.name}
+			teacherAge={teacher.age}
+			teacherSubject={teacher.subject}
+		/>
 	</div>
 </main>
 

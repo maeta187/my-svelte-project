@@ -8,6 +8,12 @@ const app = new App({
 		img: 'https://placehold.jp/150x150.png',
 		htmlStrongText: 'this string contains some <strong>HTML!!!</strong>',
 		numbers: [1, 2, 3, 4],
+		teacher: {
+			name: 'ジョン',
+			age: 32,
+			subject: '理科',
+			homeroomTeacherFlag: true,
+		},
 	},
 });
 
