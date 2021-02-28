@@ -81,6 +81,7 @@
 			teacherName={teacher.name}
 			teacherAge={teacher.age}
 			teacherSubject={teacher.subject}
+			homeroomTeacherFlag={teacher.homeroomTeacherFlag}
 		/>
 	</div>
 	<div>
