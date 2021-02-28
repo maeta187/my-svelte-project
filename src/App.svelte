@@ -1,6 +1,10 @@
 <script lang="ts">
+	import CatList from "./components/CatList.svelte";
+	import Color from "./components/Color.svelte";
 	import Nested from "./components/Nested.svelte";
+	import Promis from "./components/Promis.svelte";
 	import Teacher from "./components/Teacher.svelte";
+
 	export let name: string;
 	export let count: number;
 	const handleClick = () => count++;
@@ -21,7 +25,34 @@
 		subject: String;
 		homeroomTeacherFlag: Boolean;
 	};
+
 	export let teacher: teacherType;
+
+	// 型定義ファイルを作ってインポートできるか要検討
+	type userType = {
+		loggedIn: Boolean;
+	};
+	export let user: userType;
+	const toggle = () => {
+		user.loggedIn = !user.loggedIn;
+	};
+	export let num: number;
+	// 型定義ファイルを作ってインポートできるか要検討
+	type catType = {
+		id: String;
+		name: String;
+	};
+	export let cats: catType[];
+
+	// 型定義ファイルを作ってインポートできるか要検討
+	type colorType = {
+		id: number;
+		color: String;
+	};
+	export let colors: colorType[];
+	const removeColor = () => {
+		colors = colors.slice(1);
+	};
 </script>
 
 <main class="wrapper">
@@ -51,6 +82,34 @@
 			teacherAge={teacher.age}
 			teacherSubject={teacher.subject}
 		/>
+	</div>
+	<div>
+		{#if user.loggedIn}
+			<button on:click={toggle}> Log out </button>
+		{:else}
+			<button on:click={toggle}> Log in </button>
+		{/if}
+		{#if num > 10}
+			<p>{num} is greater than 10</p>
+		{:else if 5 > num}
+			<p>{num} is less than 5</p>
+		{:else}
+			<p>{num} is between 5 and 10</p>
+		{/if}
+	</div>
+	<div>
+		<CatList {cats} />
+	</div>
+	<div>
+		<p>test</p>
+		<button on:click={removeColor}> Remove first color </button>
+
+		{#each colors as color}
+			<Color current={color.color} />
+		{/each}
+	</div>
+	<div>
+		<Promis />
 	</div>
 </main>
 

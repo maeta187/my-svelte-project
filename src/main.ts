@@ -14,6 +14,22 @@ const app = new App({
 			subject: '理科',
 			homeroomTeacherFlag: true,
 		},
+		user: {
+			loggedIn: false,
+		},
+		num: 11,
+		cats: [
+			{ id: 'J---aiyznGQ', name: 'Keyboard Cat' },
+			{ id: 'z_AbfPXTKms', name: 'Maru' },
+			{ id: 'OUtn3pvWmpg', name: 'Henri The Existential Cat' }
+		],
+		colors: [
+			{ id: 1, color: 'darkblue' },
+			{ id: 2, color: 'indigo' },
+			{ id: 3, color: 'deeppink' },
+			{ id: 4, color: 'salmon' },
+			{ id: 5, color: 'gold' }
+		],
 	},
 });
 
