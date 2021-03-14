@@ -1,7 +1,11 @@
 <script lang="ts">
 	import CatList from "./components/CatList.svelte";
 	import Color from "./components/Color.svelte";
+	import CustomButton from "./components/CustomButton.svelte";
+	import Events from "./components/Events.svelte";
+	// import Inner from "./components/Inner.svelte";
 	import Nested from "./components/Nested.svelte";
+	import Outer from "./components/Outer.svelte";
 	import Promis from "./components/Promis.svelte";
 	import Teacher from "./components/Teacher.svelte";
 
@@ -52,6 +56,21 @@
 	export let colors: colorType[];
 	const removeColor = () => {
 		colors = colors.slice(1);
+	};
+
+	// 型定義ファイルを作ってインポートできるか要検討
+	type axisType = {
+		x: number;
+		y: number;
+	};
+	export let axis: axisType;
+
+	const handleMessage = (event) => {
+		alert(event.detail.text);
+	};
+
+	const customButtonClick = () => {
+		alert("clicked");
 	};
 </script>
 
@@ -111,6 +130,19 @@
 	</div>
 	<div>
 		<Promis />
+	</div>
+	<div>
+		<Events {axis} />
+	</div>
+	<div>
+		<!-- on:sayHelloは子コンポーネントで呼ばれる -->
+		<!-- <Inner on:sayHello={handleMessage} /> -->
+		<!-- Innerで実行したイベントをOuter経由で呼ばれている -->
+		<Outer on:sayHello={handleMessage} />
+	</div>
+	<div>
+		<!-- 子から受け取ったイベントを実行している -->
+		<CustomButton on:click={customButtonClick} />
 	</div>
 </main>
 
