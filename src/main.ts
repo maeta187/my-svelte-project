@@ -30,6 +30,9 @@ const app = new App({
 			{ id: 4, color: 'salmon' },
 			{ id: 5, color: 'gold' }
 		],
+		axis: {
+			x: 0, y: 0
+		}
 	},
 });
 

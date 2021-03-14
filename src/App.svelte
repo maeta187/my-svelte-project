@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CatList from "./components/CatList.svelte";
 	import Color from "./components/Color.svelte";
+	import Events from "./components/Events.svelte";
 	import Nested from "./components/Nested.svelte";
 	import Promis from "./components/Promis.svelte";
 	import Teacher from "./components/Teacher.svelte";
@@ -53,6 +54,13 @@
 	const removeColor = () => {
 		colors = colors.slice(1);
 	};
+
+	// 型定義ファイルを作ってインポートできるか要検討
+	type axisType = {
+		x: number;
+		y: number;
+	};
+	export let axis: axisType;
 </script>
 
 <main class="wrapper">
@@ -111,6 +119,9 @@
 	</div>
 	<div>
 		<Promis />
+	</div>
+	<div>
+		<Events {axis} />
 	</div>
 </main>
 
