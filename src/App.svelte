@@ -2,7 +2,9 @@
 	import CatList from "./components/CatList.svelte";
 	import Color from "./components/Color.svelte";
 	import Events from "./components/Events.svelte";
+	import Inner from "./components/Inner.svelte";
 	import Nested from "./components/Nested.svelte";
+	import Outer from "./components/Outer.svelte";
 	import Promis from "./components/Promis.svelte";
 	import Teacher from "./components/Teacher.svelte";
 
@@ -61,6 +63,10 @@
 		y: number;
 	};
 	export let axis: axisType;
+
+	const handleMessage = (event) => {
+		alert(event.detail.text);
+	};
 </script>
 
 <main class="wrapper">
@@ -122,6 +128,12 @@
 	</div>
 	<div>
 		<Events {axis} />
+	</div>
+	<div>
+		<!-- on:sayHelloは子コンポーネントで呼ばれる -->
+		<!-- <Inner on:sayHello={handleMessage} /> -->
+		<!-- Innerで実行したイベントをOuter経由で呼ばれている -->
+		<Outer on:sayHello={handleMessage} />
 	</div>
 </main>
 
