@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CatList from "./components/CatList.svelte";
 	import Color from "./components/Color.svelte";
+	import CustomButton from "./components/CustomButton.svelte";
 	import Events from "./components/Events.svelte";
 	// import Inner from "./components/Inner.svelte";
 	import Nested from "./components/Nested.svelte";
@@ -66,6 +67,10 @@
 
 	const handleMessage = (event) => {
 		alert(event.detail.text);
+	};
+
+	const customButtonClick = () => {
+		alert("clicked");
 	};
 </script>
 
@@ -134,6 +139,10 @@
 		<!-- <Inner on:sayHello={handleMessage} /> -->
 		<!-- Innerで実行したイベントをOuter経由で呼ばれている -->
 		<Outer on:sayHello={handleMessage} />
+	</div>
+	<div>
+		<!-- 子から受け取ったイベントを実行している -->
+		<CustomButton on:click={customButtonClick} />
 	</div>
 </main>
 
